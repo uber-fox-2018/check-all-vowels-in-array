@@ -14,9 +14,9 @@ function generateBoard(jumlahRow, jumlahCol){
 }
 
 function checkVowels(arr){
-    var vowels="AIUEO";
-    var recap=[];
-    var pos=[];
+    let vowels="AIUEO";
+    let recap=[];
+    let pos=[];
     
     for(var i=0;i<arr.length;i++){
         for(var j=0; j<arr[i].length;j++){
@@ -31,22 +31,26 @@ function checkVowels(arr){
         recap.push(pos);
         pos=[]; 
     }
-    var count=0;
-    
+    let count=0;
+    let foundVowels=[];
     if(recap.length<=1){
-        return 0;
+        return "Blok tidak ditemukan";
     }
-
     for(var k=0;k<recap.length-1;k++){
         for(var l=0;l<recap[k].length-1;l++){
             if(recap[k].length>=2 && recap[k+1].length>=2 && (recap[k][l+1]-recap[k][l]===1)){
                 if(recap[k+1].includes(recap[k][l]) && recap[k+1].includes(recap[k][l+1])){
+                    var indexDiArr=k;//0
+                    foundVowels.push(arr[k][recap[k][l]] + arr[k][recap[k][l+1]] + arr[k+1][recap[k][l]] + arr[k+1][recap[k][l+1]]);
                     count++;
                 }
             }
         }
     }
-    return count;
+    if(count===0){
+        return "Blok tidak ditemukan";
+    }
+    return `${count} blok ditemukan: ${foundVowels}`;
 }
 
 var arr=[
@@ -70,7 +74,7 @@ var arr2=[
   [ 'R', 'E', 'U', 'P' ],
   [ 'P', 'D', 'F', 'L' ] 
 ]
-console.log(checkVowels(arr));//3
-console.log(checkVowels(arr1));//0
-console.log(checkVowels(arr2));//1
+console.log(checkVowels(arr));//33 blok ditemukan: EOIU,OOUI,OEAI
+console.log(checkVowels(arr1));//Blok tidak ditemukan
+console.log(checkVowels(arr2));//1 blok ditemukan: EUUI
 console.log(checkVowels(generateBoard(5, 4)));//random
