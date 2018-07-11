@@ -17,24 +17,25 @@ function createNestedArr(jumlahRow, jumlahCol){
 function checkVowelsInArray(randomAlphabetArr){
 	const kamus  = "aiueo";
 	let blocksWithVowels = 0;
+	let blocksWithVowelsContent =[];
 
 	for(let row = 0 ; row < randomAlphabetArr.length-2 ; row++){
 		for(let column = 0 ; column< randomAlphabetArr[0].length-2 ; column++){
 
 			let blockElementsWithVowel = 0;
 			let blockElements = [
-									randomAlphabetArr[row][column],
-									randomAlphabetArr[row][column+1],
-									randomAlphabetArr[row+1][column],
-									randomAlphabetArr[row+1][column+1]
-								]
+				randomAlphabetArr[row][column],
+				randomAlphabetArr[row][column+1],
+				randomAlphabetArr[row+1][column],
+				randomAlphabetArr[row+1][column+1]
+			];
 			for(let blockElement of blockElements){
-				if(kamus.indexOf(  blockElement ) !== -1) blockElementsWithVowel++ 
+				if(kamus.indexOf(  blockElement ) !== -1) blockElementsWithVowel++ ;
 			}
-			if(blockElementsWithVowel === 4) blocksWithVowels++;
+			if(blockElementsWithVowel === 4){blocksWithVowels++; blocksWithVowelsContent.push(blockElements.join(""));}
 		}
 	}
-	return blocksWithVowels;
+	return (blocksWithVowels ? `Banyak Blok yang ditemukan: ${blocksWithVowels}, dengan elemen ${blocksWithVowelsContent.toString()}`: "Tidak ada blok yang ditemukan");
 }
 
 var random = createNestedArr(10,10);
