@@ -22,7 +22,7 @@ let arr = [
 
 function vowelSearcher(array) {
   let res = ""
-  counterBlock = 0
+  let counterBlock = 0
   let vowel = 'aiueo'
 
   for (let i = 0; i < array.length -1; i++) {
@@ -64,5 +64,5 @@ function vowelSearcher(array) {
   }
 }
 
-console.log(vowelSearcher(vowelInArray(5,4))) // hoki bisa nemu
+// console.log(vowelSearcher(vowelInArray(5,4))) // hoki bisa nemu
 console.log(vowelSearcher(arr)) // tester
